@@ -2,11 +2,11 @@ FROM node:26-alpine
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+COPY app/package*.json ./
 
 RUN npm install
 
-COPY . .
+COPY app/ ./
 
 ENV NODE_ENV=production
 
