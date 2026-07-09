@@ -40,10 +40,10 @@ pipeline {
             }
             stage("Build and Push docker image") {
                 steps {
-                    withCredentials([usernamePassword(credentialsId: 'nexus', usernameVariable: 'USER', passwordVariable: 'PWD')]){
-                        sh "docker build -t 20.189.96.16:8083/myapp:${IMAGE_NAME} . "
-                        sh 'echo $PWD | docker login -u $USER --password-stdin 20.189.96.16:8083'
-                        sh "docker push 20.189.96.16:8083/myapp:${IMAGE_NAME}"
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USER', passwordVariable: 'PWD')]){
+                        sh "docker build -t zhoupan970810/exercises:${IMAGE_NAME} . "
+                        sh 'echo $PWD | docker login -u $USER --password-stdin'
+                        sh "docker push zhoupan970810/exercises:${IMAGE_NAME}"
                     }
                 }
             }
