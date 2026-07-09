@@ -42,7 +42,7 @@ pipeline {
                 steps {
                     withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USER', passwordVariable: 'PWD')]){
                         sh "docker build -t zhoupan970810/exercises:${IMAGE_NAME} . "
-                        sh 'echo $PWD | docker login -u $USER --password-stdin'
+                        sh 'echo "$PWD" | docker login -u $USER --password-stdin'
                         sh "docker push zhoupan970810/exercises:${IMAGE_NAME}"
                     }
                 }
